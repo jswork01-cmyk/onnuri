@@ -222,7 +222,7 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ data, onSave }) => {
 
   return (
     <div className="p-4 md:p-6 max-w-6xl mx-auto">
-      <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+      <div className="bg-white p-4 md:p-8 rounded-2xl shadow-sm border border-gray-200">
         <h2 className="text-xl font-bold mb-6 flex items-center gap-2 text-rose-600">
           <span className="p-2 bg-rose-50 rounded-lg">📤</span>
           온누리상품권 지출결의서 작성
@@ -233,11 +233,11 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ data, onSave }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="text-xs font-bold text-gray-400 uppercase">결의일자</label>
-                <input type="date" required value={date} onChange={e => setDate(e.target.value)} className="w-full border rounded-lg p-2.5 mt-1 focus:ring-2 focus:ring-rose-500 outline-none" />
+                <input type="date" required value={date} onChange={e => setDate(e.target.value)} className="w-full border rounded-xl p-3 mt-1 focus:ring-2 focus:ring-rose-500 outline-none" />
               </div>
               <div>
                 <label className="text-xs font-bold text-gray-400 uppercase">계정과목</label>
-                <select required value={category} onChange={e => setCategory(e.target.value)} className="w-full border rounded-lg p-2.5 mt-1 focus:ring-2 focus:ring-rose-500 outline-none">
+                <select required value={category} onChange={e => setCategory(e.target.value)} className="w-full border rounded-xl p-3 mt-1 focus:ring-2 focus:ring-rose-500 outline-none">
                   <option value="">선택하세요</option>
                   {expenseCategories.map((name, idx) => <option key={idx} value={name}>{name}</option>)}
                 </select>
@@ -247,7 +247,7 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ data, onSave }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="text-xs font-bold text-gray-400 uppercase">지출항목 (품명)</label>
-                <input type="text" required value={item} onChange={e => setItem(e.target.value)} className="w-full border rounded-lg p-2.5 mt-1 focus:ring-2 focus:ring-rose-500 outline-none" placeholder="예: 비품 구입, 식대 등" />
+                <input type="text" required value={item} onChange={e => setItem(e.target.value)} className="w-full border rounded-xl p-3 mt-1 focus:ring-2 focus:ring-rose-500 outline-none" placeholder="예: 비품 구입, 식대 등" />
               </div>
               <div>
                 <label className="text-xs font-bold text-gray-400 uppercase">지출금액</label>
@@ -256,7 +256,7 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ data, onSave }) => {
                   required 
                   value={amount > 0 ? amount.toLocaleString() : ''} 
                   onChange={e => setAmount(Number(e.target.value.replace(/[^0-9]/g, '')))}
-                  className="w-full border rounded-lg p-2.5 mt-1 font-bold text-rose-600 focus:ring-2 focus:ring-rose-500 outline-none text-right pr-4" 
+                  className="w-full border rounded-xl p-3 mt-1 font-bold text-rose-600 focus:ring-2 focus:ring-rose-500 outline-none text-right pr-4" 
                   placeholder="0" 
                 />
               </div>
@@ -265,11 +265,11 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ data, onSave }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="text-xs font-bold text-gray-400 uppercase">거래처</label>
-                <input type="text" value={vendor} onChange={e => setVendor(e.target.value)} className="w-full border rounded-lg p-2.5 mt-1 focus:ring-2 focus:ring-rose-500 outline-none" placeholder="상호명 또는 대표자명" />
+                <input type="text" value={vendor} onChange={e => setVendor(e.target.value)} className="w-full border rounded-xl p-3 mt-1 focus:ring-2 focus:ring-rose-500 outline-none" placeholder="상호명 또는 대표자명" />
               </div>
               <div>
                 <label className="text-xs font-bold text-gray-400 uppercase">작성 담당자</label>
-                <select required value={spender} onChange={e => setSpender(e.target.value)} className="w-full border rounded-lg p-2.5 mt-1 focus:ring-2 focus:ring-rose-500 outline-none">
+                <select required value={spender} onChange={e => setSpender(e.target.value)} className="w-full border rounded-xl p-3 mt-1 focus:ring-2 focus:ring-rose-500 outline-none">
                   <option value="">선택하세요</option>
                   {approvalRoles.map((item, idx) => (
                     <option key={idx} value={item.name}>{item.name} ({item.role})</option>
@@ -280,17 +280,17 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ data, onSave }) => {
 
             <div>
               <label className="text-xs font-bold text-gray-400 uppercase">적요 (상세내용)</label>
-              <textarea value={description} onChange={e => setDescription(e.target.value)} className="w-full border rounded-lg p-2.5 mt-1 h-32 focus:ring-2 focus:ring-rose-500 outline-none" placeholder="지출 상세 내용을 입력하세요" />
+              <textarea value={description} onChange={e => setDescription(e.target.value)} className="w-full border rounded-xl p-3 mt-1 h-32 focus:ring-2 focus:ring-rose-500 outline-none resize-none" placeholder="지출 상세 내용을 입력하세요" />
             </div>
 
-            <div className="flex gap-3 pt-4">
+            <div className="flex flex-col sm:flex-row gap-3 pt-4">
               <button 
                 type="submit" 
                 disabled={isSaving}
                 className={`flex-1 text-white py-4 rounded-xl font-bold shadow-lg transition-all text-lg flex items-center justify-center gap-2 ${isSaving ? 'bg-gray-400' : 'bg-rose-600 hover:bg-rose-700 shadow-rose-100'}`}
               >
                 {isSaving && <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>}
-                {isSaving ? '업로드 및 저장 중...' : '결의서 저장'}
+                {isSaving ? '업로드 중...' : '결의서 저장'}
               </button>
               <button type="button" onClick={handlePrint} className="flex-1 bg-slate-800 hover:bg-slate-900 text-white py-4 rounded-xl font-bold shadow-lg shadow-slate-100 transition-all text-lg">
                 결의서 인쇄
@@ -298,35 +298,47 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ data, onSave }) => {
             </div>
           </div>
 
-          <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+          {/* 사진 첨부 영역 */}
+          <div className="bg-gray-50 p-4 md:p-6 rounded-2xl border border-gray-100">
             <h3 className="text-sm font-bold text-gray-500 mb-4 flex items-center gap-2">
                📸 증빙자료 첨부 (최대 4장)
-               <span className="text-[10px] font-normal text-gray-400">구글 드라이브에 자동 업로드됩니다.</span>
+               <span className="hidden sm:inline text-[10px] font-normal text-gray-400">터치하여 촬영하거나 갤러리에서 선택</span>
             </h3>
-            <div className="grid grid-cols-2 gap-4 h-[400px]">
+            <div className="grid grid-cols-2 gap-3 md:gap-4 h-auto md:h-[400px]">
               {evidenceImages.map((img, idx) => (
-                <div key={idx} className="relative group border-2 border-dashed border-gray-200 rounded-xl bg-white overflow-hidden hover:border-rose-300 transition-colors flex items-center justify-center">
+                <div key={idx} className="relative group border-2 border-dashed border-gray-200 rounded-xl bg-white overflow-hidden hover:border-rose-300 transition-colors flex items-center justify-center aspect-square md:aspect-auto">
                   {img ? (
                     <>
                       <img src={img} className="w-full h-full object-cover" alt={`첨부 ${idx + 1}`} />
                       <button 
                         type="button" 
                         onClick={() => removeImage(idx)}
-                        className="absolute top-2 right-2 bg-rose-500 text-white p-1 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity"
+                        className="absolute top-2 right-2 bg-rose-500/90 text-white p-1.5 rounded-full shadow-md z-10"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                       </button>
                     </>
                   ) : (
-                    <label className="w-full h-full flex flex-col items-center justify-center cursor-pointer hover:bg-rose-50 transition-colors">
-                      <svg className="w-8 h-8 text-gray-300 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path></svg>
-                      <span className="text-[10px] text-gray-400 font-bold">사진 추가</span>
-                      <input type="file" accept="image/*" onChange={handleFileChange(idx)} className="hidden" />
+                    <label className="w-full h-full flex flex-col items-center justify-center cursor-pointer hover:bg-rose-50 transition-colors p-4">
+                      <div className="p-3 bg-gray-50 rounded-full mb-2 group-hover:bg-rose-100 transition-colors">
+                        <svg className="w-6 h-6 md:w-8 md:h-8 text-gray-300 group-hover:text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                      </div>
+                      <span className="text-xs md:text-sm text-gray-400 font-bold">사진 촬영/추가</span>
+                      {/* accept="image/*"는 모바일 브라우저에서 카메라 촬영과 사진첩 선택을 동시에 제공하게 합니다. */}
+                      <input 
+                        type="file" 
+                        accept="image/*" 
+                        onChange={handleFileChange(idx)} 
+                        className="hidden" 
+                      />
                     </label>
                   )}
                 </div>
               ))}
             </div>
+            <p className="mt-4 text-[11px] text-gray-400 text-center">
+              ※ 모바일에서 클릭 시 '카메라'를 선택하면 바로 촬영할 수 있습니다.
+            </p>
           </div>
         </form>
       </div>
