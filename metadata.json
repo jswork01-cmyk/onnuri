@@ -1,0 +1,7 @@
+{
+  "name": "폴더저장 정심작업장 온누리상품권 관리시스템",
+  "description": "정심작업장을 위한 구글 시트 연동 온누리상품권 회계/재정 관리 시스템",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
