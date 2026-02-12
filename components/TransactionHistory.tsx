@@ -152,7 +152,16 @@ const TransactionHistory: React.FC<TransactionHistoryProps> = ({ data, onRefresh
           </table>
           <div style="margin-top:50px; text-align:center; font-size:20px; font-weight: bold;">${churchName}</div>
         </div>
-        <script>window.onload = function() { window.print(); window.close(); }</script>
+        <script>
+          window.onload = function() {
+            setTimeout(function() {
+              window.print();
+              window.onafterprint = function() { window.close(); };
+              // 폴백: 2초 후에도 안닫히면 강제 종료 시도
+              setTimeout(function() { if(!window.closed) window.close(); }, 2000);
+            }, 300);
+          };
+        </script>
       </body>
       </html>
     `;
@@ -264,7 +273,15 @@ const TransactionHistory: React.FC<TransactionHistoryProps> = ({ data, onRefresh
           </div>
         </div>
         ` : ''}
-        <script>window.onload = function() { window.print(); window.close(); }</script>
+        <script>
+          window.onload = function() {
+            setTimeout(function() {
+              window.print();
+              window.onafterprint = function() { window.close(); };
+              setTimeout(function() { if(!window.closed) window.close(); }, 2000);
+            }, 500);
+          };
+        </script>
       </body>
       </html>
     `;

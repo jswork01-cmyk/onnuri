@@ -11,12 +11,11 @@ const CashJournal: React.FC<CashJournalProps> = ({ data }) => {
   const churchName = data.churchInfo?.name || '성문침례교회';
   const initialCarryover = Number(data.churchInfo?.initialCarryover) || 0;
 
-  // 실시간 누적 잔액이 포함된 데이터 생성 (정확한 시계열 계산)
   const journalRows = useMemo(() => {
     const sorted = [...transactions].sort((a, b) => {
       const dateDiff = a.date.localeCompare(b.date);
       if (dateDiff !== 0) return dateDiff;
-      return a.id.localeCompare(b.id); // 날짜가 같을 경우 ID 순으로 정렬 유지
+      return a.id.localeCompare(b.id);
     });
     
     let runningBalance = initialCarryover;
@@ -105,7 +104,15 @@ const CashJournal: React.FC<CashJournalProps> = ({ data }) => {
         <div class="system-info">
           본 장부는 시스템에 의해 자동 생성되었습니다. | ${churchName} 회계관리
         </div>
-        <script>window.onload = () => { window.print(); setTimeout(() => window.close(), 500); }</script>
+        <script>
+          window.onload = function() {
+            setTimeout(function() {
+              window.print();
+              window.onafterprint = function() { window.close(); };
+              setTimeout(function() { if(!window.closed) window.close(); }, 2000);
+            }, 500);
+          };
+        </script>
       </body>
       </html>
     `;
